@@ -9,8 +9,65 @@
 <ion-content [fullscreen]="true">
   <div class="calculator" id="container">
     <div class="entryForm">
-      <h2><strong>Enter Stats</strong></h2>
-      <form class="calcInputs">
+      <h2>Financial Information</h2>
+      <form
+        class="financialForm"
+        oninput="function updateStats(event) {
+
+          let hourly =  document.querySelector(`#hourly`).value.replace(/[^0-9]/g, ``);
+          let workWeek = document.querySelector(`#workWeek`).value.replace(/[^0-9]/g, ``);
+          let salary = document.querySelector(`#salary`).value.replace(/[^0-9]/g, ``);
+          let monthlyIncome = document.querySelector(`#monthlyIncome`).value;
+          let annualSalary = document.querySelector(`#annualSalary`).value;
+
+          console.log(`hourly`, hourly);
+          console.log(`workWeek`, workWeek);
+          console.log(`salary`, salary);
+          console.log(`monthlyIncome`, monthlyIncome);
+          console.log(`annualSalary`, annualSalary);
+
+          if (hourly && workWeek && !salary) {
+            document.querySelector(`#monthlyIncome`).value = `Monthly Income: $ ` + Math.floor(((hourly * workWeek) * 52) / 12).toLocaleString(`en-US`);
+            document.querySelector(`#annualSalary`).value = `Annual Salary: $ ` + Math.floor((hourly * workWeek) * 52).toLocaleString(`en-US`);
+          } else if (salary && !hourly && workWeek) {
+            hourly = (salary / 52) / workWeek;
+            document.querySelector(`#monthlyIncome`).value = `Monthly Income: $ ` + Math.floor(((hourly * workWeek) * 52) / 12).toLocaleString(`en-US`);
+            document.querySelector(`#annualSalary`).value = `Annual Salary: $ ` + Math.floor((hourly * workWeek) * 52).toLocaleString(`en-US`);
+          } else if (salary && !hourly && !workWeek) {
+            workWeek = 40;
+            hourly = (salary / 52) / workWeek;
+            document.querySelector(`#monthlyIncome`).value = `Monthly Income: $ ` + Math.floor(((hourly * workWeek) * 52) / 12).toLocaleString(`en-US`);
+            document.querySelector(`#annualSalary`).value = `Annual Salary: $ ` + Math.floor((hourly * workWeek) * 52).toLocaleString(`en-US`);
+          }
+
+      }
+      updateStats(event);"
+        on
+      >
+        <input
+          type="text"
+          name="hourly"
+          id="hourly"
+          class="hourly"
+          placeholder="Hourly Rate"
+        />
+        <input
+          type="text"
+          name="workWeek"
+          id="workWeek"
+          class="workWeek"
+          placeholder="Hours Worked in a Week"
+        />
+        <input
+          type="text"
+          name="salary"
+          id="salary"
+          class="salary fullWidth"
+          placeholder="Annual Salary"
+        />
+      </form>
+      <h2>Personal Information</h2>
+      <form class="personalForm">
         <input
           type="text"
           name="name"
@@ -41,24 +98,32 @@
         />
         <input
           type="text"
-          name="hourly"
-          id="hourly"
-          class="hourly"
-          placeholder="Hourly Rate"
+          name="email"
+          id="email"
+          class="email fullWidth"
+          placeholder="Email Address"
+        />
+      </form>
+    </div>
+    <div style="border-left: 1px solid #000; height: 500px"></div>
+    <div class="entryForm statistics" id="statistics">
+      <h2>Financial Statistics</h2>
+      <form class="outputs">
+        <input
+          type="text"
+          class="monthlyIncome"
+          id="monthlyIncome"
+          name="monthlyIncome"
+          value="Monthly Income: "
+          readonly
         />
         <input
           type="text"
-          name="workWeek"
-          id="workWeek"
-          class="workWeek"
-          placeholder="Hours Worked in a Week"
-        />
-        <input
-          type="text"
-          name="salary"
-          id="salary"
-          class="salary fullWidth"
-          placeholder="Annual Salary"
+          class="annualSalary"
+          id="annualSalary"
+          name="annualSalary"
+          value="Annual Salary: "
+          readonly
         />
       </form>
     </div>

@@ -2,21 +2,65 @@
   <ion-toolbar class="topToolbar">
     <div class="calcTitle">
       <img src="/assets/images/angular-ionic-calculator.png" class="calcLogo" />
-      <strong>Angular Ionic Calculator</strong>
+      <h1><strong>Angular Ionic Calculator</strong></h1>
     </div>
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
-  <div id="container">
-    <strong>Angular Ionic Calculator</strong>
-    <p>
-      Angular Ionic
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://ionicframework.com/docs/components"
-        >Calculator</a
-      >
-    </p>
+  <div class="calculator" id="container">
+    <div class="entryForm">
+      <h2><strong>Enter Stats</strong></h2>
+      <form class="calcInputs">
+        <input
+          type="text"
+          name="name"
+          id="name"
+          class="name"
+          placeholder="First Name"
+        />
+        <input
+          type="text"
+          name="lname"
+          id="lname"
+          class="lname"
+          placeholder="Last Name"
+        />
+        <input
+          type="text"
+          name="job"
+          id="job"
+          class="job"
+          placeholder="Job Title"
+        />
+        <input
+          type="text"
+          name="company"
+          id="company"
+          class="company"
+          placeholder="Company Name"
+        />
+        <input
+          type="text"
+          name="hourly"
+          id="hourly"
+          class="hourly"
+          placeholder="Hourly Rate"
+        />
+        <input
+          type="text"
+          name="workWeek"
+          id="workWeek"
+          class="workWeek"
+          placeholder="Hours Worked in a Week"
+        />
+        <input
+          type="text"
+          name="salary"
+          id="salary"
+          class="salary fullWidth"
+          placeholder="Annual Salary"
+        />
+      </form>
+    </div>
   </div>
 </ion-content>

@@ -9,14 +9,79 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
+/* Montserrat */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* Caveat */
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap");
+
+body {
+  font-family: "Montserrat" !important;
+}
+
+.md body {
+  --ion-background-color: #455a64;
+  --ion-toolbar-background: #000000;
+  font-family: "Montserrat" !important;
+}
+
 .calcTitle {
   display: flex !important;
   align-items: center !important;
   width: 100% !important;
-  padding: 1em;
+  padding: 25px;
+  font-family: "Montserrat" !important;
   .calcLogo {
     max-width: 50px;
-    margin-right: 1em;
+    margin-right: 15px;
+  }
+}
+
+.entryForm {
+  text-align: left;
+  font-family: "Montserrat" !important;
+  .calculator {
+    form {
+      display: flex;
+      width: 40%;
+      justify-content: space-between;
+      align-items: center;
+      grid-gap: 15px;
+      flex-wrap: wrap;
+      text-align: center;
+      input {
+        color: white;
+        font-size: 0.85em;
+        font-weight: 700;
+        background: #000000;
+        border: none;
+        outline: none;
+        padding: 15px;
+        border-radius: 4px;
+        &.fullWidth {
+          max-width: 100% !important;
+          width: 100% !important;
+        }
+        &:not(.fullWidth) {
+          max-width: 50%;
+        }
+        &::placeholder {
+          color: #455a64;
+        }
+        &:focus {
+          border: none;
+          outline: none;
+        }
+        &:focus-visible {
+          border: none;
+          outline: none;
+        }
+        &:focus-within {
+          border: none;
+          outline: none;
+        }
+      }
+    }
   }
 }
 

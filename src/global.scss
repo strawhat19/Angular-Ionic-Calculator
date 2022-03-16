@@ -102,7 +102,11 @@ h2 {
 #statistics {
   input {
     background: transparent;
-    font-weight: 300;
+    font-weight: 500;
+    font-size: 18px;
+    max-width: 33%;
+    min-width: unset;
+    width: 31%;
   }
 }
 

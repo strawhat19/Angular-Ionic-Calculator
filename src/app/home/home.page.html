@@ -14,55 +14,85 @@
         class="financialForm"
         oninput="function updateStats(event) {
 
-          let hourly =  document.querySelector(`#hourly`).value.replace(/[^0-9]/g, ``);
-          let workWeek = document.querySelector(`#workWeek`).value.replace(/[^0-9]/g, ``);
-          let salary = document.querySelector(`#salary`).value.replace(/[^0-9]/g, ``);
+          let hourlyRate =  document.querySelector(`#hourlyInput`).value.replace(/[^0-9.]/g, ``);
+          let weeklyHours = document.querySelector(`#weeklyInput`).value.replace(/[^0-9.]/g, ``);
+          let annualSalary = document.querySelector(`#salaryInput`).value.replace(/[^0-9.]/g, ``);
 
-         
-          if (hourly && !workWeek) {
-            document.querySelector(`#hourlyWage`).value = `$ ` + hourly.toLocaleString(`en-US`) + ` / Hour`;
-            document.querySelector(`#daily`).value = `$ ` + (hourly * 8).toLocaleString(`en-US`) + ` / Day`;
-            document.querySelector(`#weekly`).value = `$ ` + (hourly * 40).toLocaleString(`en-US`) + ` / Week`;
-            document.querySelector(`#monthlyIncome`).value = `$ ` + Math.floor(((hourly * 40) * 52) / 12).toLocaleString(`en-US`) + ` / Month`;
-            document.querySelector(`#annualSalary`).value = `$ ` + Math.floor((hourly * 40) * 52).toLocaleString(`en-US`) + ` / Year`;
-            document.querySelector(`#hourlyWageTaxes`).value = `$ ` + Math.floor(hourly*0.24).toLocaleString(`en-US`) + ` Taxes / Hour`;
-            document.querySelector(`#dailyTaxes`).value = `$ ` + Math.floor((hourly * (40/5))*0.24).toLocaleString(`en-US`) + ` Taxes / Day`;
-            document.querySelector(`#weeklyTaxes`).value = `$ ` + Math.floor((hourly * 40)*0.24).toLocaleString(`en-US`) + ` Taxes / Week`;
-            document.querySelector(`#monthlyTaxes`).value = `$ ` + Math.floor((((hourly * 40)*52) / 12)*0.24).toLocaleString(`en-US`) + ` Taxes / Month`;
-            document.querySelector(`#annualTaxes`).value = `$ ` + Math.floor(((hourly * 40)*52)*0.24).toLocaleString(`en-US`) + ` Taxes / Year`;
-          } else if (hourly && workWeek) {
-            document.querySelector(`#hourlyWage`).value = `$ ` + hourly.toLocaleString(`en-US`) + ` / Hour`;
-            document.querySelector(`#daily`).value = `$ ` + (hourly * 8).toLocaleString(`en-US`) + ` / Day`;
-            document.querySelector(`#weekly`).value = `$ ` + (hourly * workWeek).toLocaleString(`en-US`) + ` / Week`;
-            document.querySelector(`#monthlyIncome`).value = `$ ` + Math.floor(((hourly * workWeek) * 52) / 12).toLocaleString(`en-US`) + ` / Month`;
-            document.querySelector(`#annualSalary`).value = `$ ` + Math.floor((hourly * workWeek) * 52).toLocaleString(`en-US`) + ` / Year`;
-            document.querySelector(`#hourlyWageTaxes`).value = `$ ` + Math.floor(hourly*0.24).toLocaleString(`en-US`) + ` Taxes / Hour`;
-            document.querySelector(`#dailyTaxes`).value = `$ ` + Math.floor((hourly * (workWeek/5))*0.24).toLocaleString(`en-US`) + ` Taxes / Day`;
-            document.querySelector(`#weeklyTaxes`).value = `$ ` + Math.floor((hourly * workWeek)*0.24).toLocaleString(`en-US`) + ` Taxes / Week`;
-            document.querySelector(`#monthlyTaxes`).value = `$ ` + Math.floor((((hourly * workWeek)*52) / 12)*0.24).toLocaleString(`en-US`) + ` Taxes / Month`;
-            document.querySelector(`#annualTaxes`).value = `$ ` + Math.floor(((hourly * workWeek)*52)*0.24).toLocaleString(`en-US`) + ` Taxes / Year`;
-          } else if (!hourly && !workWeek && salary) {
-            document.querySelector(`#hourlyWage`).value = `$ ` + Math.floor((salary / 365) / 8).toLocaleString(`en-US`) + ` / Hour`;
-            document.querySelector(`#daily`).value = `$ ` + Math.floor(salary / 365).toLocaleString(`en-US`) + ` / Day`;
-            document.querySelector(`#weekly`).value = `$ ` + Math.floor(salary / 52).toLocaleString(`en-US`) + ` / Week`;
-            document.querySelector(`#monthlyIncome`).value = `$ ` + Math.floor(salary / 12).toLocaleString(`en-US`) + ` / Month`;
-            document.querySelector(`#annualSalary`).value = `$ ` + Math.floor(salary).toLocaleString(`en-US`) + ` / Year`;
-            document.querySelector(`#hourlyWageTaxes`).value = `$ ` + Math.floor(((salary / 365) / 8)*0.24).toLocaleString(`en-US`) + ` Taxes / Hour`;
-            document.querySelector(`#dailyTaxes`).value = `$ ` + Math.floor((salary / 365)*0.24).toLocaleString(`en-US`) + ` Taxes / Day`;
-            document.querySelector(`#weeklyTaxes`).value = `$ ` + Math.floor((salary / 52)*0.24).toLocaleString(`en-US`) + ` Taxes / Week`;
-            document.querySelector(`#monthlyTaxes`).value = `$ ` + Math.floor((salary / 12)*0.24).toLocaleString(`en-US`) + ` Taxes / Month`;
-            document.querySelector(`#annualTaxes`).value = `$ ` + Math.floor((salary)*0.24).toLocaleString(`en-US`) + ` Taxes / Year`;
-          } else {
-            document.querySelector(`#monthlyIncome`).value = `Monthly Income`;
-            document.querySelector(`#annualSalary`).value = `Annual Salary`;
-            document.querySelector(`#hourlyWage`).value = `Hourly Wage`;
+          let hourly = document.querySelector(`#hourly`).value.replace(/[^0-9.]/g, ``);
+          let daily = document.querySelector(`#daily`).value.replace(/[^0-9.]/g, ``);
+          let weekly = document.querySelector(`#weekly`).value.replace(/[^0-9.]/g, ``);
+          let monthly = document.querySelector(`#monthly`).value.replace(/[^0-9.]/g, ``);
+          let yearly = document.querySelector(`#yearly`).value.replace(/[^0-9.]/g, ``);
+          let hourlyTax = document.querySelector(`#hourlyTaxes`).value.replace(/[^0-9.]/g, ``);
+          let dailyTax = document.querySelector(`#dailyTaxes`).value.replace(/[^0-9.]/g, ``);
+          let weeklyTax = document.querySelector(`#weeklyTaxes`).value.replace(/[^0-9.]/g, ``);
+          let monthlyTax = document.querySelector(`#monthlyTaxes`).value.replace(/[^0-9.]/g, ``);
+          let yearlyTax = document.querySelector(`#yearlyTaxes`).value.replace(/[^0-9.]/g, ``);
+
+          if (!hourlyRate && !weeklyHours && !annualSalary) {
+            document.querySelector(`#hourly`).value = `Hourly Wage`;
             document.querySelector(`#daily`).value = `Daily Income`;
             document.querySelector(`#weekly`).value = `Weekly Income`;
-            document.querySelector(`#monthlyTaxes`).value = `Monthly Income Taxes`;
-            document.querySelector(`#annualTaxes`).value = `Annual Salary Taxes`;
-            document.querySelector(`#hourlyWageTaxes`).value = `Hourly Wage Taxes`;
-            document.querySelector(`#dailyTaxes`).value = `Daily Income Taxes`;
-            document.querySelector(`#weeklyTaxes`).value = `Weekly Income Taxes`;
+            document.querySelector(`#monthly`).value = `Monthly Income`;
+            document.querySelector(`#yearly`).value = `Annual Salary`;
+            document.querySelector(`#hourlyTaxes`).value = `Hourly Taxes`;
+            document.querySelector(`#dailyTaxes`).value = `Daily Taxes`;
+            document.querySelector(`#weeklyTaxes`).value = `Weekly Taxes`;
+            document.querySelector(`#monthlyTaxes`).value = `Monthly Taxes`;
+            document.querySelector(`#yearlyTaxes`).value = `Annual Taxes`;
+            document.querySelector(`#hourlyCash`).value = `Hourly Cash`;
+            document.querySelector(`#dailyCash`).value = `Daily Cash`;
+            document.querySelector(`#weeklyCash`).value = `Weekly Cash`;
+            document.querySelector(`#monthlyCash`).value = `Monthly Cash`;
+            document.querySelector(`#yearlyCash`).value = `Annual Cash`;
+          } else if (hourlyRate && !weeklyHours && !annualSalary) {
+            document.querySelector(`#hourly`).value = `$ ` + hourlyRate.toLocaleString(`en-US`) + ` per Hour`;
+            document.querySelector(`#daily`).value = `$ ` + (hourlyRate * 8).toLocaleString(`en-US`) + ` per Day`;
+            document.querySelector(`#weekly`).value = `$ ` + (hourlyRate * 40).toLocaleString(`en-US`) + ` per Week`;
+            document.querySelector(`#monthly`).value = `$ ` + Math.floor(((hourlyRate * 40) * 52) / 12).toLocaleString(`en-US`) + ` per Month`;
+            document.querySelector(`#yearly`).value = `$ ` + Math.floor((hourlyRate * 40) * 52).toLocaleString(`en-US`) + ` per Year`;
+            document.querySelector(`#hourlyTaxes`).value = `-$ ` + Math.floor(hourlyRate*0.24).toLocaleString(`en-US`) + ` Taxes per Hour`;
+            document.querySelector(`#dailyTaxes`).value = `-$ ` + Math.floor((hourlyRate * (40/5))*0.24).toLocaleString(`en-US`) + ` Taxes per Day`;
+            document.querySelector(`#weeklyTaxes`).value = `-$ ` + Math.floor((hourlyRate * 40)*0.24).toLocaleString(`en-US`) + ` Taxes per Week`;
+            document.querySelector(`#monthlyTaxes`).value = `-$ ` + Math.floor((((hourlyRate * 40)*52) / 12)*0.24).toLocaleString(`en-US`) + ` Taxes per Month`;
+            document.querySelector(`#yearlyTaxes`).value = `-$ ` + Math.floor(((hourlyRate * 40)*52)*0.24).toLocaleString(`en-US`) + ` Taxes per Year`;
+            document.querySelector(`#hourlyCash`).value = `$ ` + Math.floor(hourlyRate-(hourlyRate*0.24)).toLocaleString(`en-US`) + ` Cash per Hour`;
+            document.querySelector(`#dailyCash`).value = `$ ` + Math.floor((hourlyRate-(hourlyRate*0.24))*8).toLocaleString(`en-US`) + ` Cash per Day`;
+            document.querySelector(`#weeklyCash`).value = `$ ` + Math.floor(((hourlyRate-(hourlyRate*0.24))*8)*5).toLocaleString(`en-US`) + ` Cash per Week`;
+            document.querySelector(`#monthlyCash`).value = `$ ` + Math.floor(((((hourlyRate-(hourlyRate*0.24))*8)*5)*52)/12).toLocaleString(`en-US`) + ` Cash per Month`;
+            document.querySelector(`#yearlyCash`).value = `$ ` + Math.floor((((hourlyRate-(hourlyRate*0.24))*8)*5)*52).toLocaleString(`en-US`) + ` Cash per Year`;
+          } else if (hourlyRate && weeklyHours && !annualSalary) {
+            document.querySelector(`#hourly`).value = `$ ` + hourlyRate.toLocaleString(`en-US`) + ` per Hour`;
+            document.querySelector(`#daily`).value = `$ ` + (hourlyRate * (weeklyHours/5)).toLocaleString(`en-US`) + ` per Day`;
+            document.querySelector(`#weekly`).value = `$ ` + (hourlyRate * weeklyHours).toLocaleString(`en-US`) + ` per Week`;
+            document.querySelector(`#monthly`).value = `$ ` + Math.floor(((hourlyRate * weeklyHours) * 52) / 12).toLocaleString(`en-US`) + ` per Month`;
+            document.querySelector(`#yearly`).value = `$ ` + Math.floor((hourlyRate * weeklyHours) * 52).toLocaleString(`en-US`) + ` per Year`;
+            document.querySelector(`#hourlyTaxes`).value = `-$ ` + Math.floor(hourlyRate*0.24).toLocaleString(`en-US`) + ` Taxes per Hour`;
+            document.querySelector(`#dailyTaxes`).value = `-$ ` + Math.floor((hourlyRate * (weeklyHours/5))*0.24).toLocaleString(`en-US`) + ` Taxes per Day`;
+            document.querySelector(`#weeklyTaxes`).value = `-$ ` + Math.floor((hourlyRate * weeklyHours)*0.24).toLocaleString(`en-US`) + ` Taxes per Week`;
+            document.querySelector(`#monthlyTaxes`).value = `-$ ` + Math.floor((((hourlyRate * weeklyHours)*52) / 12)*0.24).toLocaleString(`en-US`) + ` Taxes per Month`;
+            document.querySelector(`#yearlyTaxes`).value = `-$ ` + Math.floor(((hourlyRate * weeklyHours)*52)*0.24).toLocaleString(`en-US`) + ` Taxes per Year`;
+            document.querySelector(`#hourlyCash`).value = `$ ` + Math.floor(hourlyRate-(hourlyRate*0.24)).toLocaleString(`en-US`) + ` Cash per Hour`;
+            document.querySelector(`#dailyCash`).value = `$ ` + Math.floor((hourlyRate-(hourlyRate*0.24))*(weeklyHours/5)).toLocaleString(`en-US`) + ` Cash per Day`;
+            document.querySelector(`#weeklyCash`).value = `$ ` + Math.floor(((hourlyRate-(hourlyRate*0.24))*(weeklyHours/5))*5).toLocaleString(`en-US`) + ` Cash per Week`;
+            document.querySelector(`#monthlyCash`).value = `$ ` + Math.floor(((((hourlyRate-(hourlyRate*0.24))*(weeklyHours/5))*5)*52)/12).toLocaleString(`en-US`) + ` Cash per Month`;
+            document.querySelector(`#yearlyCash`).value = `$ ` + Math.floor((((hourlyRate-(hourlyRate*0.24))*(weeklyHours/5))*5)*52).toLocaleString(`en-US`) + ` Cash per Year`;
+          } else if (!hourlyRate && !weeklyHours && annualSalary) {
+            document.querySelector(`#hourly`).value = `$ ` + Math.floor((annualSalary / 260) / 8).toLocaleString(`en-US`) + ` per Hour`;
+            document.querySelector(`#daily`).value = `$ ` + Math.floor(annualSalary / 260).toLocaleString(`en-US`) + ` per Day`;
+            document.querySelector(`#weekly`).value = `$ ` + Math.floor(annualSalary / 52).toLocaleString(`en-US`) + ` per Week`;
+            document.querySelector(`#monthly`).value = `$ ` + Math.floor(annualSalary / 12).toLocaleString(`en-US`) + ` per Month`;
+            document.querySelector(`#yearly`).value = `$ ` + Math.floor(annualSalary).toLocaleString(`en-US`) + ` per Year`;
+            document.querySelector(`#hourlyTaxes`).value = `-$ ` + Math.floor(((annualSalary / 260) / 8)* 0.24).toLocaleString(`en-US`) + ` Taxes per Hour`;
+            document.querySelector(`#dailyTaxes`).value = `-$ ` + Math.floor((annualSalary / 260) * 0.24).toLocaleString(`en-US`) + ` Taxes per Day`;
+            document.querySelector(`#weeklyTaxes`).value = `-$ ` + Math.floor((annualSalary / 52) * 0.24).toLocaleString(`en-US`) + ` Taxes per Week`;
+            document.querySelector(`#monthlyTaxes`).value = `-$ ` + Math.floor((annualSalary / 12) * 0.24).toLocaleString(`en-US`) + ` Taxes per Month`;
+            document.querySelector(`#yearlyTaxes`).value = `-$ ` + Math.floor(annualSalary * 0.24).toLocaleString(`en-US`) + ` Taxes per Year`;
+            document.querySelector(`#hourlyCash`).value = `$ ` + Math.floor(((annualSalary / 260) / 8)-(((annualSalary / 260) / 8)*0.24)).toLocaleString(`en-US`) + ` Cash per Hour`;
+            document.querySelector(`#dailyCash`).value = `$ ` + Math.floor((annualSalary / 260)-((annualSalary / 260) * 0.24)).toLocaleString(`en-US`) + ` Cash per Day`;
+            document.querySelector(`#weeklyCash`).value = `$ ` + Math.floor((annualSalary / 52)-((annualSalary / 52) * 0.24)).toLocaleString(`en-US`) + ` Cash per Week`;
+            document.querySelector(`#monthlyCash`).value = `$ ` + Math.floor((annualSalary / 12)-((annualSalary / 12) * 0.24)).toLocaleString(`en-US`) + ` Cash per Month`;
+            document.querySelector(`#yearlyCash`).value = `$ ` + Math.floor(annualSalary-(annualSalary * 0.24)).toLocaleString(`en-US`) + ` Cash per Year`;
           }
 
       }
@@ -71,23 +101,23 @@
       >
         <input
           type="text"
-          name="hourly"
-          id="hourly"
-          class="hourly"
+          name="hourlyInput"
+          id="hourlyInput"
+          class="hourlyInput"
           placeholder="Hourly Rate"
         />
         <input
           type="text"
-          name="workWeek"
-          id="workWeek"
-          class="workWeek"
+          name="weeklyInput"
+          id="weeklyInput"
+          class="weeklyInput"
           placeholder="Hours Worked in a Week"
         />
         <input
           type="text"
-          name="salary"
-          id="salary"
-          class="salary fullWidth"
+          name="salaryInput"
+          id="salaryInput"
+          class="salaryInput fullWidth"
           placeholder="Annual Salary"
         />
       </form>
@@ -136,18 +166,18 @@
       <form class="outputs">
         <input
           type="text"
-          class="hourlyWage"
-          id="hourlyWage"
-          name="hourlyWage"
+          class="hourly"
+          id="hourly"
+          name="hourly"
           value="Hourly Wage"
           readonly
         />
         <input
           type="text"
-          class="hourlyWageTaxes"
-          id="hourlyWageTaxes"
-          name="hourlyWageTaxes"
-          value="Hourly Wage Taxes"
+          class="hourlyTaxes"
+          id="hourlyTaxes"
+          name="hourlyTaxes"
+          value="Hourly Taxes"
           readonly
         />
         <input
@@ -171,7 +201,7 @@
           class="dailyTaxes"
           id="dailyTaxes"
           name="dailyTaxes"
-          value="Daily Income Taxes"
+          value="Daily Taxes"
           readonly
         />
         <input
@@ -195,7 +225,7 @@
           class="weeklyTaxes"
           id="weeklyTaxes"
           name="weeklyTaxes"
-          value="Weekly Income Taxes"
+          value="Weekly Taxes"
           readonly
         />
         <input
@@ -208,9 +238,9 @@
         />
         <input
           type="text"
-          class="monthlyIncome"
-          id="monthlyIncome"
-          name="monthlyIncome"
+          class="monthly"
+          id="monthly"
+          name="monthly"
           value="Monthly Income"
           readonly
         />
@@ -219,7 +249,7 @@
           class="monthlyTaxes"
           id="monthlyTaxes"
           name="monthlyTaxes"
-          value="Monthly Income Taxes"
+          value="Monthly Taxes"
           readonly
         />
         <input
@@ -232,25 +262,25 @@
         />
         <input
           type="text"
-          class="annualSalary"
-          id="annualSalary"
-          name="annualSalary"
+          class="yearly"
+          id="yearly"
+          name="yearly"
           value="Annual Salary"
           readonly
         />
         <input
           type="text"
-          class="annualTaxes"
-          id="annualTaxes"
-          name="annualTaxes"
-          value="Annual Salary Taxes"
+          class="yearlyTaxes"
+          id="yearlyTaxes"
+          name="yearlyTaxes"
+          value="Annual Taxes"
           readonly
         />
         <input
           type="text"
-          class="annualCash"
-          id="annualCash"
-          name="annualCash"
+          class="yearlyCash"
+          id="yearlyCash"
+          name="yearlyCash"
           value="Annual Cash"
           readonly
         />

@@ -4,7 +4,7 @@
 
 Just testing stuff, made a small budgeting calculator
 
-![Screenshot of App](./src/assets/images/angular-ionic-calculator-design2.png)
+![Screenshot of App](./src/assets/images/angular-ionic-calculator-design4.png)
 
 ## Table of Contents
 

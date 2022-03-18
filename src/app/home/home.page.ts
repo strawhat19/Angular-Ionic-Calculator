@@ -1,5 +1,54 @@
 import { Component, OnInit } from '@angular/core';
 
+interface User {
+  email: any;
+  username: any,
+  password: any;
+  job: any;
+  company: any;
+  stats: any;
+  bills: any;
+}
+
+class User {
+  constructor(email, username, password, job, company, stats, bills) {
+    this.email = email;
+    this.username = username;
+    this.password = password;
+    this.job = job;
+    this.company = company;
+    this.stats = stats;
+    this.bills = bills;
+  }
+}
+
+export const user = JSON.parse(localStorage.getItem(`User`));
+export const newUser = JSON.parse(localStorage.getItem(`New User`));
+export const users = JSON.parse(localStorage.getItem(`Users`)) || [];
+export const lastUser = JSON.parse(localStorage.getItem(`Last User`));
+export const userEmails = JSON.parse(localStorage.getItem(`User Emails`)) || [];
+
+// Capitalize First Letter of Every Word in String
+export const toUpperCase = (string?:String) => {
+  let words = string.split(` `);
+  let capWords = words.map(word => {
+    let capitalizedWord = word?.charAt(0)?.toUpperCase() + word?.slice(1);
+    return capitalizedWord || word;
+  })
+  return capWords.join(` `);
+}
+
+// Remove Duplicate Objects from Array
+export const removeDuplicateObjFromArray = (array?:any) => {
+  const uniqueArray = array?.filter((value?:any, index?:any) => {
+      const _value = JSON.stringify(value);
+      return index === array?.findIndex((obj?:any) => {
+          return JSON.stringify(obj) === _value;
+      });
+  });
+  return uniqueArray;
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -9,14 +58,52 @@ export class HomePage implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    // Code to be Executed when the Page Laods 
+    // Code to be Executed when the Page Laods
   }
 
-  switchForm = async (event) => {
-    console.log(`Event`, event);
+  capitalizeInput = e => e.target.value = toUpperCase(e.target.value);
+
+  registrationActions = async (event) => {
+    const currentButton = event.target;
+    const currentForm = event.target.parentElement.previousSibling;
+    const jobInput:any = (<HTMLInputElement>document.querySelector(`#jobInput`));
+    const companyInput:any = (<HTMLInputElement>document.querySelector(`#companyInput`));
+    const emailInput:any = (<HTMLInputElement>document.querySelector(`#emailInput`));
+    const passwordInput:any = (<HTMLInputElement>document.querySelector(`#passwordInput`));
+    if (!emailInput.value || !emailInput.value.substring(0, emailInput.value.indexOf("@"))) {
+      alert(`Please Enter a Valid Email Address!`);
+      return;
+    } else if (!passwordInput.value) {
+      alert(`Please Enter a Password!`);
+      return;
+    } else { // Grab Inputs
+      let email = emailInput.value;
+      let username = email.includes(`@`) ? email.substring(0, email.indexOf("@")) : email;
+      let password = passwordInput.value;
+      let job = jobInput.value;
+      let company = companyInput.value;
+      switch(currentButton.id) {
+        case `signUpButton`:
+          if (userEmails.includes(email)) { // Switch to Sign In
+            alert(`${username}, You Already Have An Account!`);
+            return;
+          } else { // Register New User
+            let newUser = new User(email,username,password,job,company,[],[]);
+            users.push(newUser);
+            userEmails.push(newUser.email);
+            localStorage.setItem(`User`, JSON.stringify(newUser));
+            localStorage.setItem(`New User`, JSON.stringify(newUser));
+            localStorage.setItem(`User Emails`, JSON.stringify([...new Set(userEmails)]));
+            localStorage.setItem(`Users`, JSON.stringify(removeDuplicateObjFromArray(users)));
+            console.log(`Users`, JSON.parse(localStorage.getItem(`Users`)));
+            console.log(`New User`, newUser);
+          }
+          break;
+      }
+    }
   }
 
-  updateStats = async (event) => {
+  calculateStats = async (event) => {
 
     const currentInput:any = event.target;
     const hourlyInput:any = (<HTMLInputElement>document.querySelector(`#hourlyInput`));

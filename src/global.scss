@@ -39,11 +39,13 @@ button {
 }
 
 .buttons {
-  padding-top: 15px;
   display: flex;
   width: 100%;
   justify-content: space-between;
   grid-gap: 20px;
+  &.registration {
+    padding-top: 15px;
+  }
 }
 
 .md body {

@@ -2,7 +2,7 @@
   <ion-toolbar class="topToolbar">
     <div class="calcTitle">
       <img src="/assets/images/angular-ionic-calculator.png" class="calcLogo" />
-      <h1><strong>Angular Ionic Calculator</strong></h1>
+      <h1><strong>Angular Ionic Budgeting Calculator</strong></h1>
     </div>
   </ion-toolbar>
 </ion-header>
@@ -11,9 +11,9 @@
     <div class="entryForm">
       <h2>Financial Information</h2>
       <form
-        class="financialForm"
-        id="financialForm"
-        (input)="updateStats($event)"
+        class="financialInformationForm"
+        id="financialInformationForm"
+        (input)="calculateStats($event)"
       >
         <input
           type="text"
@@ -36,54 +36,56 @@
           class="salaryInput fullWidth currencyFormat"
           placeholder="Annual Salary"
         />
+        <div class="buttons">
+          <button id="addBillButton" (click)="addBill($event)">Add Bill</button>
+        </div>
       </form>
-      <h2>Personal Information</h2>
-      <form class="personalForm" id="personalForm">
+      <h2 id="registration auth formSwitchTitle">Sign Up or Sign In</h2>
+      <form class="registration auth signUpForm" id="signUpForm">
         <input
           type="text"
-          name="name"
-          id="name"
-          class="name"
-          placeholder="First Name"
-        />
-        <input
-          type="text"
-          name="lname"
-          id="lname"
-          class="lname"
-          placeholder="Last Name"
-        />
-        <input
-          type="text"
-          name="job"
-          id="job"
-          class="job"
+          name="jobInput"
+          id="jobInput"
+          class="jobInput"
           placeholder="Job Title"
+          (input)="capitalizeInput($event)"
         />
         <input
           type="text"
-          name="company"
-          id="company"
-          class="company"
+          name="companyInput"
+          id="companyInput"
+          class="companyInput"
           placeholder="Company Name"
+          (input)="capitalizeInput($event)"
         />
         <input
-          type="text"
-          name="email"
-          id="email"
-          class="email fullWidth"
+          type="email"
+          name="emailInput"
+          id="emailInput"
+          class="emailInput fullWidth"
           placeholder="Email Address"
         />
+        <input
+          type="password"
+          name="passwordInput"
+          id="passwordInput"
+          class="passwordInput fullWidth"
+          placeholder="Password"
+        />
       </form>
-      <div class="buttons">
-        <button id="signIn" (click)="formActions($event)">Sign In</button>
-        <button id="signUp" (click)="formActions($event)">Sign Up</button>
+      <div class="buttons registration signUpButtons">
+        <button id="signInButton" (click)="registrationActions($event)">
+          Sign In
+        </button>
+        <button id="signUpButton" (click)="registrationActions($event)">
+          Sign Up
+        </button>
       </div>
     </div>
     <div style="border-left: 1px solid #000; height: 500px"></div>
     <div class="entryForm statistics" id="statistics">
-      <h2>Financial Statistics</h2>
-      <form class="outputs">
+      <h2 id="switchTitle">Financial Statistics</h2>
+      <form class="financialStatisticsForm" id="financialStatisticsForm">
         <input
           type="text"
           class="hourly"

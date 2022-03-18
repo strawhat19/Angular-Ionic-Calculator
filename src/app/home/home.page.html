@@ -10,12 +10,16 @@
   <div class="calculator" id="container">
     <div class="entryForm">
       <h2>Financial Information</h2>
-      <form class="financialForm" id="financialForm">
+      <form
+        class="financialForm"
+        id="financialForm"
+        (input)="updateStats($event)"
+      >
         <input
           type="text"
           name="hourlyInput"
           id="hourlyInput"
-          class="hourlyInput"
+          class="hourlyInput currencyFormat"
           placeholder="Hourly Rate"
         />
         <input
@@ -29,12 +33,12 @@
           type="text"
           name="salaryInput"
           id="salaryInput"
-          class="salaryInput fullWidth"
+          class="salaryInput fullWidth currencyFormat"
           placeholder="Annual Salary"
         />
       </form>
       <h2>Personal Information</h2>
-      <form class="personalForm" onclick="test()">
+      <form class="personalForm" id="personalForm">
         <input
           type="text"
           name="name"
@@ -71,6 +75,10 @@
           placeholder="Email Address"
         />
       </form>
+      <div class="buttons">
+        <button id="signIn" (click)="formActions($event)">Sign In</button>
+        <button id="signUp" (click)="formActions($event)">Sign Up</button>
+      </div>
     </div>
     <div style="border-left: 1px solid #000; height: 500px"></div>
     <div class="entryForm statistics" id="statistics">

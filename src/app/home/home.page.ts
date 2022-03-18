@@ -9,20 +9,20 @@ export class HomePage implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    let financialForm = document.querySelector(`#financialForm`);
-    financialForm.addEventListener(`input`, event => {
-      this.updateStats(event);
-    })
+    // Code to be Executed when the Page Laods 
   }
 
-  updateStats(event) {
-
+  switchForm = async (event) => {
     console.log(`Event`, event);
+  }
 
-    const hourlyInput = (<HTMLInputElement>document.querySelector(`#hourlyInput`));
-    const weeklyInput = (<HTMLInputElement>document.querySelector(`#weeklyInput`));
-    const salaryInput = (<HTMLInputElement>document.querySelector(`#salaryInput`));
+  updateStats = async (event) => {
 
+    const currentInput:any = event.target;
+    const hourlyInput:any = (<HTMLInputElement>document.querySelector(`#hourlyInput`));
+    const weeklyInput:any = (<HTMLInputElement>document.querySelector(`#weeklyInput`));
+    const salaryInput:any = (<HTMLInputElement>document.querySelector(`#salaryInput`));
+    
     let hourlyRate:any = hourlyInput.value.replace(/[^0-9.]/g, ``);
     let weeklyHours:any = weeklyInput.value.replace(/[^0-9.]/g, ``);
     let annualSalary:any = salaryInput.value.replace(/[^0-9.]/g, ``);
@@ -43,6 +43,13 @@ export class HomePage implements OnInit {
     let monthlyCash:any = (<HTMLInputElement>document.querySelector(`#monthlyCash`));
     let yearlyCash:any = (<HTMLInputElement>document.querySelector(`#yearlyCash`));
 
+    if (!isNaN(event.data)) {
+      if (!isNaN(parseInt(currentInput.value.replace(/[^0-9]/g, ``))) && currentInput.classList.contains(`currencyFormat`)) {
+        let localeValue = `$ ` + parseInt(currentInput.value.replace(/[^0-9]/g, ``)).toLocaleString(`en-US`);
+        currentInput.value = localeValue;
+      }
+    }
+
     if (!hourlyRate && !weeklyHours && !annualSalary) {
       hourly.value = `Hourly Wage`;
       daily.value = `Daily Income`;
@@ -60,7 +67,7 @@ export class HomePage implements OnInit {
       monthlyCash.value = `Monthly Cash`;
       yearlyCash.value = `Annual Cash`;
     } else if (hourlyRate && !weeklyHours && !annualSalary) {
-      hourly.value = `$ ` + hourlyRate.toLocaleString(`en-US`) + ` per Hour`;
+      hourly.value = `$ ` + (hourlyRate*1).toLocaleString(`en-US`) + ` per Hour`;
       daily.value = `$ ` + (hourlyRate * 8).toLocaleString(`en-US`) + ` per Day`;
       weekly.value = `$ ` + (hourlyRate * 40).toLocaleString(`en-US`) + ` per Week`;
       monthly.value = `$ ` + Math.floor(((hourlyRate * 40) * 52) / 12).toLocaleString(`en-US`) + ` per Month`;
@@ -76,7 +83,7 @@ export class HomePage implements OnInit {
       monthlyCash.value = `$ ` + Math.floor(((((hourlyRate-(hourlyRate*0.24))*8)*5)*52)/12).toLocaleString(`en-US`) + ` Cash per Month`;
       yearlyCash.value = `$ ` + Math.floor((((hourlyRate-(hourlyRate*0.24))*8)*5)*52).toLocaleString(`en-US`) + ` Cash per Year`;
     } else if (hourlyRate && weeklyHours && !annualSalary) {
-      hourly.value = `$ ` + hourlyRate.toLocaleString(`en-US`) + ` per Hour`;
+      hourly.value = `$ ` + (hourlyRate*1).toLocaleString(`en-US`) + ` per Hour`;
       daily.value = `$ ` + (hourlyRate * (weeklyHours/5)).toLocaleString(`en-US`) + ` per Day`;
       weekly.value = `$ ` + (hourlyRate * weeklyHours).toLocaleString(`en-US`) + ` per Week`;
       monthly.value = `$ ` + Math.floor(((hourlyRate * weeklyHours) * 52) / 12).toLocaleString(`en-US`) + ` per Month`;

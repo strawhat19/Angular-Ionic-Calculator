@@ -20,6 +20,54 @@
       href="assets/images/angular-ionic-calculator.png"
     />
 
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/ef15ed3574.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/7.16.1/firebase-auth.js"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/7.16.1/firebase-database.js"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/7.16.1/firebase-firestore.js"
+    ></script>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.9/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        getDocs,
+      } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCJdyrfrpIu4JFdViabx0SkDy55-69L9PI",
+        authDomain: "angular-ionic-calculator.firebaseapp.com",
+        projectId: "angular-ionic-calculator",
+        storageBucket: "angular-ionic-calculator.appspot.com",
+        messagingSenderId: "1081396115621",
+        appId: "1:1081396115621:web:ca55af05caf2729b21f54c",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      console.log(`app`, app);
+    </script>
+
     <!-- add to homescreen for ios -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />

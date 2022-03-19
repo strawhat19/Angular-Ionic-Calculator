@@ -72,14 +72,14 @@ export class HomePage implements OnInit {
       name="monthlyBillTitleInput"
       id="monthlyBillTitleInput"
       class="monthlyBillTitleInput capitalizeFormat"
-      placeholder="Monthly Bill Title PreFireBase"
+      placeholder="Monthly Bill Title"
     />
     <input
       type="text"
       name="monthlyBillInput"
       id="monthlyBillInput"
       class="monthlyBillInput currencyFormat"
-      placeholder="Monthly Bill Amount PreFireBase"
+      placeholder="Monthly Bill Amount"
     />
   `;
    addmonthlyBillInputsCont.innerHTML = addMonthlyBillInputs;

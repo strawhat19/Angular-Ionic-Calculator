@@ -2,8 +2,7 @@
 
 [![License Badge: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-Currently Version 0.1.8
-Just testing stuff, made a small budgeting calculator with Angular, Ionic, and Firebase.
+Version 0.1.9 - Just a small budgeting calculator to test things on mobile. Built with Angular, Ionic, Heroku, and Firebase.
 
 ![Screenshot of App](./src/assets/images/angular-ionic-calculator-design5.png)
 
@@ -16,7 +15,7 @@ Just testing stuff, made a small budgeting calculator with Angular, Ionic, and F
 
 ## Usage
 
-You can view the deployed application at https://angular-ionic-calculator.web.app/
+You can view the deployed application at https://angular-ionic-calculator.herokuapp.com/ or https://angular-ionic-calculator.web.app/
 
 ## Installation
 

@@ -11,3 +11,5 @@ app.get("/*", (req, res) => res.sendFile("server.ts", { root: "./src/" }));
 
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 8100);
+
+console.log(`app`, app);

@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
-
 import { HomePageRoutingModule } from './home-routing.module';
 
+// Components
+import { CalculatorComponent } from './calculator/calculator.component';
 
 @NgModule({
   imports: [
@@ -14,10 +15,7 @@ import { HomePageRoutingModule } from './home-routing.module';
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, CalculatorComponent]
 })
 export class HomePageModule {
-  updateStats() {
-    console.log(`hello`);
-  }
 }

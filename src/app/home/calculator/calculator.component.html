@@ -1,0 +1,204 @@
+<div class="calculator" id="container">
+  <div class="entryForm">
+    <h2>Financial Information</h2>
+    <form
+      class="financialInformationForm"
+      id="financialInformationForm"
+      (input)="calculateStats($event)"
+    >
+      <input
+        type="text"
+        name="hourlyInput"
+        id="hourlyInput"
+        class="hourlyInput currencyFormat"
+        placeholder="Hourly Rate"
+      />
+      <input
+        type="text"
+        name="weeklyInput"
+        id="weeklyInput"
+        class="weeklyInput"
+        placeholder="Hours Worked in a Week"
+      />
+      <input
+        type="text"
+        name="salaryInput"
+        id="salaryInput"
+        class="salaryInput fullWidth currencyFormat"
+        placeholder="Annual Salary"
+      />
+      <div class="buttons">
+        <button id="addMonthlyBillButton" (click)="addMonthlyBill($event)">
+          Add Monthly Bill
+        </button>
+      </div>
+    </form>
+    <h2 id="registration auth formSwitchTitle">Sign Up or Sign In</h2>
+    <form class="registration auth signUpForm" id="signUpForm">
+      <input
+        type="text"
+        name="jobInput"
+        id="jobInput"
+        class="jobInput"
+        placeholder="Job Title"
+        (input)="capitalizeInput($event)"
+      />
+      <input
+        type="text"
+        name="companyInput"
+        id="companyInput"
+        class="companyInput"
+        placeholder="Company Name"
+        (input)="capitalizeInput($event)"
+      />
+      <input
+        type="email"
+        name="emailInput"
+        id="emailInput"
+        class="emailInput fullWidth"
+        placeholder="Email Address"
+      />
+      <input
+        type="password"
+        name="passwordInput"
+        id="passwordInput"
+        class="passwordInput fullWidth"
+        placeholder="Password"
+      />
+    </form>
+    <div class="buttons registration signUpButtons">
+      <button id="signInButton" (click)="registrationActions($event)">
+        Sign In
+      </button>
+      <button id="signUpButton" (click)="registrationActions($event)">
+        Sign Up
+      </button>
+    </div>
+  </div>
+  <div style="border-left: 1px solid #000; height: 500px"></div>
+  <div class="entryForm statistics" id="statistics">
+    <h2 id="switchTitle">Financial Statistics</h2>
+    <form class="financialStatisticsForm" id="financialStatisticsForm">
+      <input
+        type="text"
+        class="hourly"
+        id="hourly"
+        name="hourly"
+        value="Hourly Wage"
+        readonly
+      />
+      <input
+        type="text"
+        class="hourlyTaxes"
+        id="hourlyTaxes"
+        name="hourlyTaxes"
+        value="Hourly Taxes"
+        readonly
+      />
+      <input
+        type="text"
+        class="hourlyCash"
+        id="hourlyCash"
+        name="hourlyCash"
+        value="Hourly Cash"
+        readonly
+      />
+      <input
+        type="text"
+        class="daily"
+        id="daily"
+        name="daily"
+        value="Daily Income"
+        readonly
+      />
+      <input
+        type="text"
+        class="dailyTaxes"
+        id="dailyTaxes"
+        name="dailyTaxes"
+        value="Daily Taxes"
+        readonly
+      />
+      <input
+        type="text"
+        class="dailyCash"
+        id="dailyCash"
+        name="dailyCash"
+        value="Daily Cash"
+        readonly
+      />
+      <input
+        type="text"
+        class="weekly"
+        id="weekly"
+        name="weekly"
+        value="Weekly Income"
+        readonly
+      />
+      <input
+        type="text"
+        class="weeklyTaxes"
+        id="weeklyTaxes"
+        name="weeklyTaxes"
+        value="Weekly Taxes"
+        readonly
+      />
+      <input
+        type="text"
+        class="weeklyCash"
+        id="weeklyCash"
+        name="weeklyCash"
+        value="Weekly Cash"
+        readonly
+      />
+      <input
+        type="text"
+        class="monthly"
+        id="monthly"
+        name="monthly"
+        value="Monthly Income"
+        readonly
+      />
+      <input
+        type="text"
+        class="monthlyTaxes"
+        id="monthlyTaxes"
+        name="monthlyTaxes"
+        value="Monthly Taxes"
+        readonly
+      />
+      <input
+        type="text"
+        class="monthlyCash"
+        id="monthlyCash"
+        name="monthlyCash"
+        value="Monthly Cash"
+        readonly
+      />
+      <input
+        type="text"
+        class="yearly"
+        id="yearly"
+        name="yearly"
+        value="Annual Salary"
+        readonly
+      />
+      <input
+        type="text"
+        class="yearlyTaxes"
+        id="yearlyTaxes"
+        name="yearlyTaxes"
+        value="Annual Taxes"
+        readonly
+      />
+      <input
+        type="text"
+        class="yearlyCash"
+        id="yearlyCash"
+        name="yearlyCash"
+        value="Annual Cash"
+        readonly
+      />
+    </form>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 {
   "name": "angular-ionic-calculator",
-  "version": "0.0.6",
+  "version": "0.1.8",
   "author": "Rakib Ahmed",
   "homepage": "https://angular-ionic-calculator.web.app/",
   "scripts": {
@@ -31,7 +31,8 @@
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "typescript": "~4.4.4",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "ts-node": "~8.3.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.2.3",
@@ -59,8 +60,7 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
-    "protractor": "~7.0.0",
-    "ts-node": "~8.3.0"
+    "protractor": "~7.0.0"
   },
   "description": "angular-ionic-calculator"
 }

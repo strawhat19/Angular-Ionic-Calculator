@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 interface User {
   email: any;
-  username: any,
+  username: any;
   password: any;
   job: any;
   company: any;
@@ -29,8 +29,8 @@ export const lastUser = JSON.parse(localStorage.getItem(`Last User`));
 export const userEmails = JSON.parse(localStorage.getItem(`User Emails`)) || [];
 
 // Capitalize First Letter of Every Word in String
-export const toUpperCase = (string?:String) => {
-  let words = string.split(` `);
+export const toUpperCase = (string?:string) => {
+  let words:any = string.split(` `);
   let capWords = words.map(word => {
     let capitalizedWord = word?.charAt(0)?.toUpperCase() + word?.slice(1);
     return capitalizedWord || word;
@@ -139,7 +139,7 @@ export class HomePage implements OnInit {
     const hourlyInput:any = (<HTMLInputElement>document.querySelector(`#hourlyInput`));
     const weeklyInput:any = (<HTMLInputElement>document.querySelector(`#weeklyInput`));
     const salaryInput:any = (<HTMLInputElement>document.querySelector(`#salaryInput`));
-    
+
     let hourlyRate:any = hourlyInput.value.replace(/[^0-9.]/g, ``);
     let weeklyHours:any = weeklyInput.value.replace(/[^0-9.]/g, ``);
     let annualSalary:any = salaryInput.value.replace(/[^0-9.]/g, ``);

@@ -5,7 +5,7 @@ const path = require("path");
 const app = express();
 
 // Serve only the static files form the dist directory
-app.use(express.static(".angular"));
+app.use(express.static("www"));
 // app.use(express.static("../angular-ionic-calculator"));
 
 // app.get("/*", (req, res) => res.sendFile("index.html", { root: "./src/" }));

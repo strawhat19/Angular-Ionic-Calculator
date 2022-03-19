@@ -2,7 +2,8 @@
 
 [![License Badge: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-Just testing stuff, made a small budgeting calculator
+Currently Version 0.1.8
+Just testing stuff, made a small budgeting calculator with Angular, Ionic, and Firebase.
 
 ![Screenshot of App](./src/assets/images/angular-ionic-calculator-design5.png)
 

@@ -4,7 +4,7 @@
 
 Just testing stuff, made a small budgeting calculator
 
-![Screenshot of App](./src/assets/images/angular-ionic-calculator-design4.png)
+![Screenshot of App](./src/assets/images/angular-ionic-calculator-design5.png)
 
 ## Table of Contents
 
@@ -15,7 +15,7 @@ Just testing stuff, made a small budgeting calculator
 
 ## Usage
 
-You can view the deployed application at https://angular-ionic-calculator.herokuapp.com/
+You can view the deployed application at https://angular-ionic-calculator.web.app/
 
 ## Installation
 

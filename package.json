@@ -1,23 +1,22 @@
 {
   "name": "angular-ionic-calculator",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "version": "0.0.5",
+  "author": "Rakib Ahmed",
+  "homepage": "https://angular-ionic-calculator.web.app/",
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "heroku-postbuild": "ng build --prod"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
     "@angular/cli": "^13.2.6",
     "@angular/common": "~13.2.2",
     "@angular/compiler-cli": "~13.2.2",
-    "@angular/core": "~13.2.2",
+    "@angular/core": "~13.3.0",
     "@angular/fire": "^7.2.1",
     "@angular/forms": "~13.2.2",
     "@angular/platform-browser": "~13.2.2",
@@ -61,9 +60,5 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0"
   },
-  "description": "An Ionic project",
-  "engines": {
-    "node": "16.13.0",
-    "npm": "8.5.4"
-  }
+  "description": "angular-ionic-calculator"
 }

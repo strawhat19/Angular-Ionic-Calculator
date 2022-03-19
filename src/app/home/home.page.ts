@@ -72,14 +72,14 @@ export class HomePage implements OnInit {
       name="monthlyBillTitleInput"
       id="monthlyBillTitleInput"
       class="monthlyBillTitleInput capitalizeFormat"
-      placeholder="Monthly Bill Title"
+      placeholder="Monthly Bill Title PreFireBase"
     />
     <input
       type="text"
       name="monthlyBillInput"
       id="monthlyBillInput"
       class="monthlyBillInput currencyFormat"
-      placeholder="Monthly Bill Amount"
+      placeholder="Monthly Bill Amount PreFireBase"
     />
   `;
    addmonthlyBillInputsCont.innerHTML = addMonthlyBillInputs;
@@ -94,7 +94,8 @@ export class HomePage implements OnInit {
 
   registrationActions = async (event) => {
     const currentButton = event.target;
-    const currentForm = event.target.parentElement.previousSibling;
+    const currentForm:any = event.target.parentElement.previousSibling;
+    console.log(`currentForm`, currentForm);
     const jobInput:any = (<HTMLInputElement>document.querySelector(`#jobInput`));
     const companyInput:any = (<HTMLInputElement>document.querySelector(`#companyInput`));
     const emailInput:any = (<HTMLInputElement>document.querySelector(`#emailInput`));

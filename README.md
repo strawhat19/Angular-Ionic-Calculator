@@ -15,7 +15,7 @@ Version 0.1.9 - Just a small budgeting calculator to test things on mobile. Buil
 
 ## Usage
 
-You can view the deployed application at https://angular-ionic-calculator.web.app/
+You can view the deployed application at https://angular-ionic-calculator.herokuapp.com/ or https://angular-ionic-calculator.web.app/
 
 ## Installation
 

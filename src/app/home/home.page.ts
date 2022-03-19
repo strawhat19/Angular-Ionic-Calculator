@@ -1,26 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-interface User {
-  email: any;
-  username: any;
-  password: any;
-  job: any;
-  company: any;
-  stats: any;
-  bills: any;
-}
-
-class User {
-  constructor(email, username, password, job, company, stats, bills) {
-    this.email = email;
-    this.username = username;
-    this.password = password;
-    this.job = job;
-    this.company = company;
-    this.stats = stats;
-    this.bills = bills;
-  }
-}
+import User from '../models/user';
 
 export const user = JSON.parse(localStorage.getItem(`User`));
 export const newUser = JSON.parse(localStorage.getItem(`New User`));

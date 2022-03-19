@@ -63,6 +63,35 @@ export class HomePage implements OnInit {
 
   capitalizeInput = e => e.target.value = toUpperCase(e.target.value);
 
+  addMonthlyBill = async event => {
+    const buttonsCont =  event.target.parentElement;
+    const financialForm = event.target.parentElement.parentElement;
+    let addmonthlyBillInputsCont:any = document.createElement(`code`);
+    let addMonthlyBillInputs:any = `<input
+      type="text"
+      name="monthlyBillTitleInput"
+      id="monthlyBillTitleInput"
+      class="monthlyBillTitleInput capitalizeFormat"
+      placeholder="Monthly Bill Title"
+    />
+    <input
+      type="text"
+      name="monthlyBillInput"
+      id="monthlyBillInput"
+      class="monthlyBillInput currencyFormat"
+      placeholder="Monthly Bill Amount"
+    />
+  `;
+   addmonthlyBillInputsCont.innerHTML = addMonthlyBillInputs;
+    financialForm.insertBefore(addmonthlyBillInputsCont.firstChild,buttonsCont);
+    financialForm.insertBefore(addmonthlyBillInputsCont.childNodes[1],buttonsCont);
+    financialForm.addEventListener(`input`, e => {
+      if (e.target.classList.contains(`capitalizeFormat`)) {
+        this.capitalizeInput(e);
+      }
+    })
+  }
+
   registrationActions = async (event) => {
     const currentButton = event.target;
     const currentForm = event.target.parentElement.previousSibling;

@@ -1,1 +1,1 @@
-web: ng run app:serve --host=0.0.0.0 --port=8100
+web: npm run build && npm start

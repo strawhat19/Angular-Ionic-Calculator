@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import User from '../../models/user';
 
 export const user = JSON.parse(localStorage.getItem(`User`));
@@ -35,13 +36,31 @@ export const removeDuplicateObjFromArray = (array?:any) => {
 })
 export class CalculatorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private alertCtrl: AlertController) { }
 
   ngOnInit() {
     // Code to be Executed when the Page Laods
   }
 
   capitalizeInput = e => e.target.value = toUpperCase(e.target.value);
+
+  showAlert = async () => {
+    await this.alertCtrl.create({
+      header: `Invalid Input`,
+      subHeader: `Please enter Valid Input`,
+      message: `Please enter only numbers`,
+      buttons: [
+        {
+          text: `Ok`, handler: (event) => {
+            console.log(event)
+          }
+        },
+        {
+          text: `Cancel`
+        }
+      ]
+    }).then(e => e.present());
+  }
 
   addMonthlyBill = async event => {
     const buttonsCont =  event.target.parentElement;
@@ -140,10 +159,21 @@ export class CalculatorComponent implements OnInit {
     let monthlyCash:any = (<HTMLInputElement>document.querySelector(`#monthlyCash`));
     let yearlyCash:any = (<HTMLInputElement>document.querySelector(`#yearlyCash`));
 
+    // Input Validation
     if (!isNaN(event.data)) {
-      if (!isNaN(parseInt(currentInput.value.replace(/[^0-9]/g, ``))) && currentInput.classList.contains(`currencyFormat`)) {
-        let localeValue = `$ ` + parseInt(currentInput.value.replace(/[^0-9]/g, ``)).toLocaleString(`en-US`);
-        currentInput.value = localeValue;
+      if (!isNaN(parseInt(currentInput.value.replace(/[^0-9]/g, ``)))) {
+        if (currentInput.classList.contains(`currencyFormat`)) {
+          let localeValue = `$ ` + parseInt(currentInput.value.replace(/[^0-9]/g, ``)).toLocaleString(`en-US`);
+          currentInput.value = localeValue;
+        } else if (currentInput.classList.contains(`numberFormat`)) {
+          let numberValue = parseInt(currentInput.value.replace(/[^0-9]/g, ``)).toLocaleString(`en-US`);
+          currentInput.value = numberValue;
+        }
+      }
+    } else {
+      if (currentInput.classList.contains(`currencyFormat`) || currentInput.classList.contains(`numberFormat`)) {
+        this.showAlert();
+        currentInput.value = event.target.value.replace(/[^0-9]/g, ``);
       }
     }
 

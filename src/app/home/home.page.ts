@@ -11,5 +11,4 @@ export class HomePage implements OnInit {
   ngOnInit() {
     // Code to be Executed when the Page Laods
   }
-
 }
